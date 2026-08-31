@@ -1,8 +1,5 @@
 name: Build Android APK
 
-# Builds a release APK entirely on GitHub's servers — no local Android
-# Studio / Android SDK needed. Runs automatically whenever you push to
-# main, or on demand from the Actions tab ("Run workflow" button).
 on:
   push:
     branches: [main]
@@ -27,10 +24,8 @@ jobs:
           flutter-version: '3.24.0'
           channel: 'stable'
 
-      # This repo only has the Dart source (lib/, pubspec.yaml) — the
-      # android/ folder isn't committed, so we generate it fresh here.
       - name: Generate Android platform files
-       run: flutter create --org com.yourschool.parentapp --project-name sstm_parent_app --platforms=android .
+        run: flutter create --org com.yourschool.parentapp --project-name sstm_parent_app --platforms=android .
 
       - name: Get packages
         run: flutter pub get
@@ -38,8 +33,6 @@ jobs:
       - name: Build release APK
         run: flutter build apk --release
 
-      # Uploads the finished APK as a downloadable "artifact" — find it
-      # on the summary page of this workflow run, under Artifacts.
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
