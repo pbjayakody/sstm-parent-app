@@ -30,7 +30,7 @@ jobs:
       # This repo only has the Dart source (lib/, pubspec.yaml) — the
       # android/ folder isn't committed, so we generate it fresh here.
       - name: Generate Android platform files
-        run: flutter create --org com.yourschool.parentapp --platforms=android .
+       run: flutter create --org com.yourschool.parentapp --project-name sstm_parent_app --platforms=android .
 
       - name: Get packages
         run: flutter pub get
